@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cut">
+  <title>27th Trucks Inc. — Redesign Concept</title>
+  <meta name="description" content="Concept redesign demo for 27th Trucks Inc., Hialeah, Florida vacuum truck specialists. Not the official website.">
+  <!-- Sales demo only: keep it out of search results so it never competes with the client's live site -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#081230">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/img/hero-peterbilt.jpg" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="top">
+  <div class="demo-ribbon" role="note">
+    <span class="demo-ribbon__dot" aria-hidden="true"></span>
+    <span><strong>Concept demo</strong><span class="hide-sm"> · Redesign proposal for 27th Trucks Inc.</span> · Not the official website</span>
+    <a href="https://www.27th-trucks.com/" target="_blank" rel="noopener">Visit live site ↗</a>
+  </div>
+  <nav class="nav" aria-label="Primary">
+    <div class="nav__inner container">
+      <a class="nav__logo" href="#top" aria-label="27th Trucks Inc. — back to top">
+        <img src="assets/img/logo.png" alt="27th Trucks Inc." width="200" height="34">
+      </a>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="#inventory">Inventory</a></li>
+        <li><a href="#why">Why 27th</a></li>
+        <li><a href="#financing">Financing</a></li>
+        <li><a href="#warranty">Warranty</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="nav__mobile-call"><a href="tel:+13058359030">Call (305) 835-9030</a></li>
+      </ul>
+      <div class="nav__actions">
+        <a class="nav__phone" href="tel:+13058359030">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+          <span>(305) 835-9030</span>
+        </a>
+        <a class="btn btn--orange btn--sm hide-md" href="#contact" data-interest="Purchase">Get a Quote</a>
+        <button class="nav__toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__media">
+      <img src="assets/img/hero-peterbilt.jpg" alt="Black Peterbilt vacuum truck with polished tank at the 27th Trucks yard in Hialeah" width="1800" height="1350" fetchpriority="high">
+    </div>
+    <div class="hero__shade" aria-hidden="true"></div>
+
+    <div class="hero__content container">
+      <p class="eyebrow eyebrow--light hero__eyebrow"><span class="eyebrow__bar"></span>Hialeah, Florida<span class="hide-sm">&nbsp;· Vacuum truck specialists</span></p>
+      <h1 id="hero-title" class="hero__title">
+        <span class="line"><span>Premium Vacuum Trucks<i>.</i></span></span>
+        <span class="line"><span>Built for the Job<i>.</i></span></span>
+      </h1>
+      <p class="hero__lede">With over 30 years of experience, 27th Trucks Inc. builds high-performance vacuum and septic trucks — brand-new tanks, proven pump packages, ready to work.</p>
+      <div class="hero__ctas">
+        <a class="btn btn--orange btn--lg" href="#inventory">Explore Inventory <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn--glass btn--lg" href="#contact">Contact Our Team</a>
+      </div>
+    </div>
+
+    <a class="hero__feature" href="#truck-int-mv607" data-open-truck="int-mv607">
+      <img src="assets/img/int-2023-1.jpg" alt="" width="1600" height="1200">
+      <span class="hero__feature-text">
+        <span class="mono">Featured · On Sale</span>
+        <strong>2023 International MV607</strong>
+        <span>2,500 gal aluminum tank · <b>$109,900</b></span>
+      </span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+    </a>
+
+    <div class="hero__rail container" aria-label="Highlights">
+      <div><span class="mono">Experience</span><strong>30+ years</strong></div>
+      <div><span class="mono">Tank warranty</span><strong>5-yr APEX nationwide</strong></div>
+      <div><span class="mono">Financing</span><strong>Through SLS Financial</strong></div>
+      <div><span class="mono">Yard hours</span><strong>Mon–Fri 8–5 · Sat by appt.</strong></div>
+    </div>
+  </section>
+
+  <!-- ============ INVENTORY ============ -->
+  <section class="section section--paper" id="inventory" aria-labelledby="inv-title">
+    <div class="container">
+      <div class="section-head section-head--split">
+        <div>
+          <p class="eyebrow reveal"><span class="eyebrow__bar"></span>Featured inventory</p>
+          <h2 id="inv-title" class="h2 reveal">Ready-to-work trucks,<br>on the lot in Hialeah.</h2>
+        </div>
+        <div class="section-head__side reveal">
+          <div class="chips" role="group" aria-label="Filter by tank capacity">
+            <button class="chip is-active" data-filter="all" aria-pressed="true">All trucks</button>
+            <button class="chip" data-filter="2500" aria-pressed="false">2,500 gal</button>
+            <button class="chip" data-filter="2000" aria-pressed="false">2,000 gal</button>
+          </div>
+          <p class="fineprint">Prices and specs as listed on 27th-trucks.com. Subject to availability.</p>
+        </div>
+      </div>
+
+      <div class="truck-grid">
+
+        <article class="truck-card reveal" id="truck-int-mv607" data-tank="2500">
+          <button class="truck-card__media" data-open-truck="int-mv607" aria-label="View photos and details of the 2023 International MV607">
+            <img src="assets/img/int-2023-1.jpg" alt="White 2023 International MV607 with polished 2,500 gallon aluminum vacuum tank" width="1600" height="1200" loading="lazy">
+            <span class="badge badge--status">On Sale</span>
+            <span class="badge badge--count"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg>7 photos</span>
+          </button>
+          <div class="truck-card__body">
+            <p class="truck-card__year mono">2023 · Vacuum / Septic</p>
+            <h3 class="truck-card__title">International MV607</h3>
+            <p class="tank-tag"><span class="tank-tag__vol">2,500</span> gal aluminum tank</p>
+            <dl class="specs">
+              <div><dt>Engine</dt><dd>Cummins ISB 6.7L</dd></div>
+              <div><dt>Trans.</dt><dd>Allison automatic</dd></div>
+              <div><dt>Pump</dt><dd>Battioni Spartan · 393 CFM</dd></div>
+              <div><dt>Mileage</dt><dd>63,000 mi</dd></div>
+            </dl>
+            <div class="truck-card__price">
+              <div><span class="mono">Price</span><strong>$109,900</strong></div>
+              <span class="truck-card__note">Financing available</span>
+            </div>
+            <div class="truck-card__ctas">
+              <button class="btn btn--navy" data-open-truck="int-mv607">View Details</button>
+              <button class="btn btn--outline" data-inquire="int-mv607">Inquire About This Truck</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="truck-card reveal" id="truck-pete-337" data-tank="2000">
+          <button class="truck-card__media" data-open-truck="pete-337" aria-label="View photos and details of the 2017 Peterbilt 337">
+            <img src="assets/img/pete-337-1.jpg" alt="White 2017 Peterbilt 337 vacuum truck with chrome stack and polished tank" width="1600" height="1200" loading="lazy">
+            <span class="badge badge--status">On Sale</span>
+            <span class="badge badge--count"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg>3 photos</span>
+          </button>
+          <div class="truck-card__body">
+            <p class="truck-card__year mono">2017 · Under CDL</p>
+            <h3 class="truck-card__title">Peterbilt 337</h3>
+            <p class="tank-tag"><span class="tank-tag__vol">2,000</span> gal vacuum tank</p>
+            <dl class="specs">
+              <div><dt>Engine</dt><dd>Paccar 6.7L</dd></div>
+              <div><dt>Trans.</dt><dd>Allison automatic</dd></div>
+              <div><dt>Pump</dt><dd>Masport Viper · 360 CFM</dd></div>
+              <div><dt>Mileage</dt><dd>93,000 mi</dd></div>
+            </dl>
+            <div class="truck-card__price">
+              <div><span class="mono">Price</span><strong>$85,000</strong></div>
+              <span class="truck-card__note">New wheels &amp; tires</span>
+            </div>
+            <div class="truck-card__ctas">
+              <button class="btn btn--navy" data-open-truck="pete-337">View Details</button>
+              <button class="btn btn--outline" data-inquire="pete-337">Inquire About This Truck</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="truck-card reveal" id="truck-pete-330" data-tank="2500">
+          <button class="truck-card__media" data-open-truck="pete-330" aria-label="View photos and details of the 2016 Peterbilt 330">
+            <img src="assets/img/pete-330-1.jpg" alt="White 2016 Peterbilt 330 septic truck with chrome bumper and 2,500 gallon tank" width="1300" height="738" loading="lazy">
+            <span class="badge badge--status">On Sale</span>
+            <span class="badge badge--count"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg>1 photo</span>
+          </button>
+          <div class="truck-card__body">
+            <p class="truck-card__year mono">2016 · Vacuum / Septic</p>
+            <h3 class="truck-card__title">Peterbilt 330</h3>
+            <p class="tank-tag"><span class="tank-tag__vol">2,500</span> gal septic tank</p>
+            <dl class="specs">
+              <div><dt>Engine</dt><dd>Paccar PX9</dd></div>
+              <div><dt>Trans.</dt><dd>Allison automatic</dd></div>
+              <div><dt>Pump</dt><dd>Masport Viper · 350 CFM</dd></div>
+              <div><dt>Mileage</dt><dd>175,000 mi</dd></div>
+            </dl>
+            <div class="truck-card__price">
+              <div><span class="mono">Price</span><strong>$79,900</strong></div>
+              <span class="truck-card__note">Financing available</span>
+            </div>
+            <div class="truck-card__ctas">
+              <button class="btn btn--navy" data-open-truck="pete-330">View Details</button>
+              <button class="btn btn--outline" data-inquire="pete-330">Inquire About This Truck</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="inv-foot reveal">
+        <p>Looking for something specific? More Peterbilt, International, Kenworth and Freightliner builds are listed in the full inventory.</p>
+        <a class="link-arrow" href="https://www.27th-trucks.com/truck-inventory" target="_blank" rel="noopener">See full inventory on the current site <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY ============ -->
+  <section class="section section--navy" id="why" aria-labelledby="why-title">
+    <div class="container">
+      <div class="why-intro">
+        <div>
+          <p class="eyebrow eyebrow--light reveal"><span class="eyebrow__bar"></span>Why 27th Trucks</p>
+          <h2 id="why-title" class="h2 h2--light reveal">Specialists in one thing: building vacuum trucks.</h2>
+        </div>
+        <p class="why-intro__text reveal">Our mission is to redefine the vacuum truck industry with superior vehicles known for innovation, durability and competitive pricing — backed by customer service for clients across the USA and worldwide.</p>
+      </div>
+
+      <div class="stats reveal" aria-label="Company figures">
+        <div class="stat"><strong data-count="30" data-suffix="+">30+</strong><span>Years of expertise</span></div>
+        <div class="stat"><strong data-count="5000" data-suffix="+">5,000+</strong><span>Trucks sold</span></div>
+        <div class="stat"><strong data-count="100" data-suffix="%">100%</strong><span>Custom-built trucks</span></div>
+        <p class="stats__src">Figures as published by 27th Trucks Inc.</p>
+      </div>
+
+      <div class="pillars">
+        <article class="pillar reveal">
+          <span class="pillar__num mono">01</span>
+          <h3>Proven experience</h3>
+          <p>A well-established history in the vacuum truck industry, delivering reliable vehicles tailored to diverse industrial needs.</p>
+        </article>
+        <article class="pillar reveal">
+          <span class="pillar__num mono">02</span>
+          <h3>Built for durability</h3>
+          <p>Brand-new tanks, Allison automatics and pump packages from Battioni and Masport — engineered for top performance.</p>
+        </article>
+        <article class="pillar reveal">
+          <span class="pillar__num mono">03</span>
+          <h3>Warranty-backed</h3>
+          <p>Exclusive dealer for APEX Tank units with a 5-year nationwide tank warranty, plus 2-year manufacturer coverage on pumps.</p>
+        </article>
+        <article class="pillar reveal">
+          <span class="pillar__num mono">04</span>
+          <h3>Real support</h3>
+          <p>Call or text the team, schedule a visit and inspect any truck at the Hialeah yard before you buy.</p>
+        </article>
+      </div>
+
+      <!-- Inside every build: tabbed component -->
+      <div class="build reveal" id="build">
+        <div class="build__head">
+          <h3 class="h3 h3--light">Inside every build</h3>
+          <div class="tabs" role="tablist" aria-label="Build components">
+            <button role="tab" id="tab-tank" aria-controls="panel-tank" aria-selected="true">Tank</button>
+            <button role="tab" id="tab-pump" aria-controls="panel-pump" aria-selected="false" tabindex="-1">Vacuum pump</button>
+            <button role="tab" id="tab-valves" aria-controls="panel-valves" aria-selected="false" tabindex="-1">Valves &amp; fittings</button>
+            <button role="tab" id="tab-chassis" aria-controls="panel-chassis" aria-selected="false" tabindex="-1">Chassis</button>
+          </div>
+        </div>
+
+        <div class="build__panels">
+          <div class="build__panel" role="tabpanel" id="panel-tank" aria-labelledby="tab-tank">
+            <figure><img src="assets/img/rear-tank.jpg" alt="Rear view of a white vacuum tank with 27th Trucks branded mud flaps" width="900" height="1200" loading="lazy"></figure>
+            <div class="build__copy">
+              <p class="mono">01 / Tank</p>
+              <h4>Brand-new tanks, sized for the route.</h4>
+              <ul class="ticks">
+                <li>2,000 and 2,500-gallon tanks across current inventory</li>
+                <li>Carbon steel and polished aluminum builds</li>
+                <li>Exclusive dealer for APEX Tank commercial vacuum tank units</li>
+              </ul>
+            </div>
+          </div>
+          <div class="build__panel" role="tabpanel" id="panel-pump" aria-labelledby="tab-pump" hidden>
+            <figure><img src="assets/img/pump-chandler.jpg" alt="Chandler Vac pump package powered by Battioni, mounted on a vacuum truck" width="1200" height="900" loading="lazy"></figure>
+            <div class="build__copy">
+              <p class="mono">02 / Vacuum pump</p>
+              <h4>Pump packages from proven names.</h4>
+              <ul class="ticks">
+                <li>Battioni, Masport and NVE pump &amp; blower partners</li>
+                <li>350–393 CFM pumps on featured trucks</li>
+                <li>Two-year manufacturer warranty on every pump &amp; blower package</li>
+              </ul>
+            </div>
+          </div>
+          <div class="build__panel" role="tabpanel" id="panel-valves" aria-labelledby="tab-valves" hidden>
+            <figure><img src="assets/img/int-2023-3.jpg" alt="Rear of a polished aluminum vacuum tank showing brass lever valves and diamond plate toolbox" width="1080" height="810" loading="lazy"></figure>
+            <div class="build__copy">
+              <p class="mono">03 / Valves &amp; fittings</p>
+              <h4>Brass where it counts.</h4>
+              <ul class="ticks">
+                <li>3″ brass lever intake valve</li>
+                <li>4″ brass lever discharge valve</li>
+                <li>3″ rear sight glass and 36″ aluminum diamond-plate toolbox</li>
+              </ul>
+            </div>
+          </div>
+          <div class="build__panel" role="tabpanel" id="panel-chassis" aria-labelledby="tab-chassis" hidden>
+            <figure><img src="assets/img/lineup.avif" alt="Row of vacuum truck cabs from several makes, including a black Peterbilt" width="1400" height="560" loading="lazy"></figure>
+            <div class="build__copy">
+              <p class="mono">04 / Chassis</p>
+              <h4>The makes fleets already trust.</h4>
+              <ul class="ticks">
+                <li>Peterbilt, International, Kenworth and Freightliner</li>
+                <li>Cummins and Paccar diesel power with Allison automatics</li>
+                <li>Every truck available for inspection in Hialeah</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINANCING & WARRANTY ============ -->
+  <section class="section section--paper" id="financing" aria-labelledby="fw-title">
+    <div class="container">
+      <div class="section-head section-head--center">
+        <p class="eyebrow reveal"><span class="eyebrow__bar"></span>Financing &amp; warranty</p>
+        <h2 id="fw-title" class="h2 reveal">Buy with confidence.</h2>
+        <p class="section-head__lede reveal">Financing to make the investment manageable, and warranty coverage on the parts that work the hardest.</p>
+      </div>
+
+      <div class="fw-grid">
+        <article class="fw-card fw-card--dark reveal">
+          <div class="fw-card__top">
+            <span class="fw-card__label mono">Financing</span>
+            <span class="fw-card__partner"><img src="assets/img/sls-logo.png" alt="SLS Financial" width="160" height="60" loading="lazy"></span>
+          </div>
+          <h3 class="fw-card__title">Financing through <span>SLS&nbsp;Financial</span></h3>
+          <p>To make your investment easier, 27th Trucks offers financing options for a smooth and accessible purchasing process.</p>
+          <ul class="ticks ticks--light">
+            <li>Financing available on trucks in current inventory</li>
+            <li>Application packet available from the team</li>
+            <li>Talk it through by phone before you apply</li>
+          </ul>
+          <div class="fw-card__ctas">
+            <a class="btn btn--orange" href="#contact" data-interest="Financing">Ask About Financing</a>
+            <a class="btn btn--glass" href="tel:+13058359030">Call (305) 835-9030</a>
+          </div>
+        </article>
+
+        <article class="fw-card reveal" id="warranty">
+          <div class="fw-card__top">
+            <span class="fw-card__label mono">Warranty</span>
+            <span class="fw-card__partner fw-card__partner--light"><img src="assets/img/apex.jpg" alt="APEX Tank LLC" width="400" height="221" loading="lazy"></span>
+          </div>
+          <h3 class="fw-card__title">Coverage you can point to.</h3>
+          <div class="warranty-rows">
+            <div class="warranty-row">
+              <strong class="warranty-row__num">5<small>yr</small></strong>
+              <div>
+                <h4>APEX Tank vacuum tanks</h4>
+                <p>Comprehensive nationwide warranty. 27th Trucks is the exclusive dealer for APEX Tank commercial vacuum tank units.</p>
+              </div>
+            </div>
+            <div class="warranty-row">
+              <strong class="warranty-row__num">2<small>yr</small></strong>
+              <div>
+                <h4>Vacuum pump &amp; blower packages</h4>
+                <p>Every package carries a two-year warranty directly from the manufacturer.</p>
+                <p class="brands mono">Battioni · Masport · NVE</p>
+              </div>
+            </div>
+          </div>
+          <div class="fw-card__ctas">
+            <a class="btn btn--navy" href="#contact" data-interest="Warranty">Ask About Warranty</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section section--dark contact" id="contact" aria-labelledby="contact-title">
+    <div class="contact__bg" aria-hidden="true"><img src="assets/img/about-2.jpg" alt="" width="1240" height="620" loading="lazy"></div>
+    <div class="container contact__grid">
+      <div class="contact__info">
+        <p class="eyebrow eyebrow--light reveal"><span class="eyebrow__bar"></span>Contact</p>
+        <h2 id="contact-title" class="h2 h2--light reveal">Let's find your<br>next truck.</h2>
+        <p class="contact__lede reveal">Questions about a truck, financing or a custom build? Talk to the team directly — or stop by the yard to inspect a truck in person.</p>
+
+        <a class="phone-big reveal" href="tel:+13058359030">
+          <span class="phone-big__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></span>
+          <span><span class="mono">Tap to call</span><strong>(305) 835-9030</strong></span>
+        </a>
+        <div class="contact__quick reveal">
+          <a class="btn btn--orange" href="tel:+13058359030">Call Now</a>
+          <a class="btn btn--glass" href="sms:+13058359030">Text Us</a>
+        </div>
+
+        <dl class="contact__meta reveal">
+          <div>
+            <dt class="mono">Yard</dt>
+            <dd>1175 E 25th St<br>Hialeah, FL 33013</dd>
+            <dd><a class="link-arrow link-arrow--light" href="https://www.google.com/maps/search/?api=1&amp;query=1175+E+25th+St+Hialeah+FL+33013" target="_blank" rel="noopener">Get directions <span aria-hidden="true">↗</span></a></dd>
+          </div>
+          <div>
+            <dt class="mono">Hours</dt>
+            <dd>Mon – Fri · 8:00 am – 5:00 pm<br>Saturday · By appointment<br>Sunday · Closed</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="form-card reveal">
+        <div class="demo-flag" role="note">
+          <strong>Demo only</strong>
+          <span>This form is not connected yet — submissions are not sent anywhere.</span>
+        </div>
+        <form id="inquiry-form" novalidate>
+          <h3 class="form-card__title">Request a quote</h3>
+          <div class="field-row">
+            <div class="field">
+              <label for="f-name">Full name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Your name">
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone</label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(305) 000-0000">
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-email">Email <span class="optional">optional</span></label>
+            <input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@company.com">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="f-truck">Truck of interest</label>
+              <select id="f-truck" name="truck">
+                <option value="">Not sure yet</option>
+                <option value="int-mv607">2023 International MV607 — $109,900</option>
+                <option value="pete-337">2017 Peterbilt 337 — $85,000</option>
+                <option value="pete-330">2016 Peterbilt 330 — $79,900</option>
+                <option value="custom">Custom build</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-interest">I'm interested in</label>
+              <select id="f-interest" name="interest">
+                <option>Purchase</option>
+                <option>Financing</option>
+                <option>Warranty</option>
+                <option>Scheduling a visit</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-msg">Message</label>
+            <textarea id="f-msg" name="message" rows="4" placeholder="Tell us about the job, tank size or timeline."></textarea>
+          </div>
+          <button class="btn btn--orange btn--block btn--lg" type="submit">Send Inquiry <span class="mono">(demo)</span></button>
+          <p class="form-card__alt">Prefer to talk? <a href="tel:+13058359030">Call (305) 835-9030</a></p>
+        </form>
+        <div class="form-success" id="form-success" hidden tabindex="-1">
+          <span class="form-success__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+          <h3>Demo submission received</h3>
+          <p>In the live version, this would reach the 27th Trucks team instantly. For now, nothing was sent — please call to talk to someone today.</p>
+          <a class="btn btn--orange" href="tel:+13058359030">Call (305) 835-9030</a>
+          <button class="btn btn--ghost" type="button" id="form-reset">Back to the form</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <img src="assets/img/logo.png" alt="27th Trucks Inc." width="200" height="34" loading="lazy">
+      <p>We are specialists building vacuum trucks.</p>
+      <div class="socials">
+        <a href="https://www.instagram.com/27th_trucks_inc/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" class="fill"/></svg></a>
+        <a href="https://www.facebook.com/27trucks" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a>
+        <a href="https://www.youtube.com/@27thtrucksinc.65" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="m10 9.5 5 2.5-5 2.5z" class="fill"/></svg></a>
+      </div>
+    </div>
+    <nav class="footer__nav" aria-label="Footer">
+      <a href="#inventory">Inventory</a>
+      <a href="#why">Why 27th</a>
+      <a href="#financing">Financing</a>
+      <a href="#warranty">Warranty</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="footer__contact">
+      <a href="tel:+13058359030">(305) 835-9030</a>
+      <p>1175 E 25th St, Hialeah, FL 33013</p>
+      <p>Mon–Fri 8:00 am – 5:00 pm</p>
+    </div>
+  </div>
+  <div class="container footer__legal">
+    <p><strong>Concept redesign demo</strong> prepared for 27th Trucks Inc. Not the official website and not affiliated with its current host. Truck details, prices and photos are taken from <a href="https://www.27th-trucks.com/" target="_blank" rel="noopener">27th-trucks.com</a> and may change.</p>
+    <p>Truck and company content © 27th Trucks Inc.</p>
+  </div>
+</footer>
+
+<!-- Mobile action bar -->
+<div class="mobile-bar" aria-label="Quick actions">
+  <a href="tel:+13058359030" class="mobile-bar__call"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>Call</a>
+  <a href="#contact" data-interest="Purchase" class="mobile-bar__quote">Get a Quote</a>
+</div>
+
+<!-- Truck detail modal -->
+<dialog class="truck-modal" id="truck-modal" aria-labelledby="tm-title">
+  <div class="truck-modal__inner">
+    <button class="truck-modal__close" type="button" aria-label="Close details" data-close>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <div class="gallery">
+      <div class="gallery__stage">
+        <img id="tm-image" src="" alt="" width="1600" height="1200">
+        <button class="gallery__nav gallery__nav--prev" type="button" aria-label="Previous photo" data-step="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+        <button class="gallery__nav gallery__nav--next" type="button" aria-label="Next photo" data-step="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+        <span class="gallery__count mono" id="tm-count" aria-live="polite"></span>
+      </div>
+      <div class="gallery__thumbs" id="tm-thumbs"></div>
+    </div>
+    <div class="truck-modal__info">
+      <p class="mono" id="tm-kicker"></p>
+      <h2 id="tm-title"></h2>
+      <p class="truck-modal__price"><strong id="tm-price"></strong><span class="badge badge--status badge--inline">On Sale</span></p>
+      <dl class="spec-table" id="tm-specs"></dl>
+      <div class="truck-modal__ctas">
+        <button class="btn btn--orange btn--block" type="button" id="tm-inquire">Inquire About This Truck</button>
+        <a class="btn btn--outline btn--block" href="tel:+13058359030">Call (305) 835-9030</a>
+      </div>
+      <a class="link-arrow" id="tm-source" href="#" target="_blank" rel="noopener">View original listing <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</dialog>
+
+<script src="main.js" defer></script>
+</body>
+</html>
