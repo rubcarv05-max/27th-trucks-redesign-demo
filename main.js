@@ -4,6 +4,7 @@
 
   document.documentElement.classList.add('js');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
@@ -20,7 +21,7 @@
         ['Engine', 'Cummins ISB 6.7L diesel'],
         ['Transmission', 'Allison automatic'],
         ['Tank', 'Brand-new 2,500-gallon aluminum'],
-        ['Vacuum pump', 'Battioni Spartan · 393 CFM'],
+        ['Vacuum pump', 'Battioni Spartan, 393 CFM'],
         ['Mileage', '63,000 original miles'],
         ['Tires', 'New 11R22.5'],
         ['Toolbox', '36″ aluminum'],
@@ -39,9 +40,9 @@
         ['Engine', 'Paccar 6.7L'],
         ['Transmission', 'Allison automatic'],
         ['Tank', '2,000 gallon'],
-        ['Vacuum pump', 'Masport Viper · 360 CFM'],
+        ['Vacuum pump', 'Masport Viper, 360 CFM'],
         ['Mileage', '93,000 original miles'],
-        ['Tires', '11R22.5 · new wheels & tires'],
+        ['Tires', '11R22.5, new wheels & tires'],
         ['Toolbox', '36″'],
         ['Intake', '3″ valve'],
         ['Discharge', '4″ valve'],
@@ -57,7 +58,7 @@
         ['Engine', 'Paccar PX9'],
         ['Transmission', 'Allison automatic'],
         ['Tank', '2,500-gallon septic tank'],
-        ['Vacuum pump', 'Masport Viper · 350 CFM'],
+        ['Vacuum pump', 'Masport Viper, 350 CFM'],
         ['Mileage', '175,000 miles'],
         ['Toolbox', '36″ aluminum diamond plate'],
         ['Intake', '3″ brass lever valve'],
@@ -103,7 +104,6 @@
 
   /* ---------- Reveal on scroll ---------- */
   const reveals = $$('.reveal');
-  // Stagger siblings that share a grid
   $$('.truck-grid, .pillars, .fw-grid').forEach((grid) => {
     $$('.reveal', grid).forEach((el, i) => el.style.setProperty('--d', `${i * 0.1}s`));
   });
@@ -122,7 +122,6 @@
   }
 
   /* ---------- Stat counters ---------- */
-  const counters = $$('[data-count]');
   const fmt = new Intl.NumberFormat('en-US');
   const runCounter = (el) => {
     const target = Number(el.dataset.count);
@@ -132,8 +131,7 @@
     const dur = 1400;
     const tick = (now) => {
       const p = Math.min((now - start) / dur, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = fmt.format(Math.round(target * eased)) + suffix;
+      el.textContent = fmt.format(Math.round(target * (1 - Math.pow(1 - p, 3)))) + suffix;
       if (p < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
@@ -143,11 +141,68 @@
       if (entry.isIntersecting) { runCounter(entry.target); countIO.unobserve(entry.target); }
     });
   }, { threshold: 0.6 });
-  counters.forEach((el) => countIO.observe(el));
+  $$('[data-count]').forEach((el) => countIO.observe(el));
+
+  /* ---------- Buttons: click ripple + magnetic hover ---------- */
+  document.addEventListener('pointerdown', (e) => {
+    const btn = e.target.closest('.btn');
+    if (!btn || reduceMotion.matches) return;
+    const r = btn.getBoundingClientRect();
+    const size = Math.max(r.width, r.height) * 2.2;
+    const dot = document.createElement('span');
+    dot.className = 'ripple';
+    dot.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - r.left - size / 2}px;top:${e.clientY - r.top - size / 2}px`;
+    btn.append(dot);
+    dot.addEventListener('animationend', () => dot.remove());
+  });
+
+  if (finePointer.matches && !reduceMotion.matches) {
+    $$('[data-magnetic]').forEach((btn) => {
+      btn.addEventListener('pointermove', (e) => {
+        const r = btn.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+        const dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+        btn.style.setProperty('--mx', `${(dx * 6).toFixed(1)}px`);
+        btn.style.setProperty('--my', `${(dy * 4).toFixed(1)}px`);
+      });
+      btn.addEventListener('pointerleave', () => {
+        btn.style.removeProperty('--mx');
+        btn.style.removeProperty('--my');
+      });
+    });
+  }
+
+  /* ---------- On the lot: infinite side-scrolling strip ---------- */
+  const lot = $('.lot');
+  const lotTrack = $('#lot-track');
+  const lotPause = $('.lot__pause');
+  if (reduceMotion.matches) {
+    lot.classList.add('lot--static');
+  } else {
+    // Duplicate the set once so the loop is seamless; the copy is hidden from assistive tech and tab order.
+    $$(':scope > li', lotTrack).forEach((li) => {
+      const copy = li.cloneNode(true);
+      copy.setAttribute('aria-hidden', 'true');
+      $$('a, button', copy).forEach((el) => el.setAttribute('tabindex', '-1'));
+      lotTrack.append(copy);
+    });
+    const setSpeed = () => {
+      const setWidth = lotTrack.scrollWidth / 2;
+      lotTrack.style.setProperty('--lot-dur', `${Math.round(setWidth / 45)}s`); // ~45px per second
+    };
+    setSpeed();
+    window.addEventListener('resize', setSpeed);
+  }
+  lotPause.addEventListener('click', () => {
+    const paused = lot.classList.toggle('is-paused');
+    lotPause.setAttribute('aria-pressed', String(paused));
+    $('span', lotPause).textContent = paused ? 'Play' : 'Pause';
+  });
 
   /* ---------- Inventory filter ---------- */
   const chips = $$('.chip[data-filter]');
   const cards = $$('.truck-card');
+  const filterStatus = $('#filter-status');
   chips.forEach((chip) => chip.addEventListener('click', () => {
     const f = chip.dataset.filter;
     chips.forEach((c) => {
@@ -155,14 +210,23 @@
       c.classList.toggle('is-active', on);
       c.setAttribute('aria-pressed', String(on));
     });
+    let shown = 0;
     cards.forEach((card) => {
       const show = f === 'all' || card.dataset.tank === f;
       card.classList.toggle('is-hidden', !show);
-      if (show) card.classList.add('is-in');
+      card.classList.remove('is-entering');
+      if (show) {
+        shown++;
+        card.classList.add('is-in');
+        if (!reduceMotion.matches) { void card.offsetWidth; card.classList.add('is-entering'); }
+      }
     });
+    filterStatus.textContent = f === 'all'
+      ? 'Showing all 3 featured trucks. Prices as listed on 27th-trucks.com.'
+      : `Showing ${shown} featured truck${shown === 1 ? '' : 's'} with a ${Number(f).toLocaleString('en-US')}-gallon tank.`;
   }));
 
-  /* ---------- Tabs (Inside every build) ---------- */
+  /* ---------- Tabs (What goes into our builds) ---------- */
   const tabs = $$('[role="tab"]');
   const selectTab = (tab, focus = false) => {
     tabs.forEach((t) => {
@@ -185,6 +249,78 @@
     });
   });
 
+  /* ---------- Reviews carousel ---------- */
+  const revTrack = $('#reviews-track');
+  const revCards = $$('.review', revTrack);
+  const revDots = $('#reviews-dots');
+  const [revPrev, revNext] = $$('[data-rev]');
+  revCards.forEach((card, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', `Show review ${i + 1} of ${revCards.length}`);
+    b.addEventListener('click', () => goToReview(i));
+    revDots.append(b);
+  });
+  const dots = $$('button', revDots);
+  const step = () => revCards[1].offsetLeft - revCards[0].offsetLeft;
+  const currentReview = () => Math.round(revTrack.scrollLeft / step());
+  const maxScroll = () => revTrack.scrollWidth - revTrack.clientWidth;
+  const goToReview = (i) => {
+    revTrack.scrollTo({ left: Math.max(0, Math.min(i * step(), maxScroll())), behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+  };
+  const syncReviews = () => {
+    const atEnd = revTrack.scrollLeft >= maxScroll() - 4;
+    const idx = atEnd ? revCards.length - 1 : currentReview();
+    dots.forEach((d, n) => d.setAttribute('aria-current', String(n === idx)));
+    revPrev.disabled = revTrack.scrollLeft <= 4;
+    revNext.disabled = atEnd;
+  };
+  let revRaf = 0;
+  revTrack.addEventListener('scroll', () => { cancelAnimationFrame(revRaf); revRaf = requestAnimationFrame(syncReviews); }, { passive: true });
+  window.addEventListener('resize', syncReviews);
+  syncReviews();
+  revPrev.addEventListener('click', () => goToReview(currentReview() - 1));
+  revNext.addEventListener('click', () => goToReview(currentReview() + 1));
+  revTrack.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); goToReview(currentReview() + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goToReview(currentReview() - 1); }
+  });
+
+  // Mouse drag to scroll (touch already scrolls natively)
+  let drag = null;
+  revTrack.addEventListener('pointerdown', (e) => {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    drag = { x: e.clientX, left: revTrack.scrollLeft, moved: false };
+  });
+  window.addEventListener('pointermove', (e) => {
+    if (!drag) return;
+    const dx = e.clientX - drag.x;
+    if (Math.abs(dx) > 4) { drag.moved = true; revTrack.classList.add('is-dragging'); }
+    revTrack.scrollLeft = drag.left - dx;
+  });
+  window.addEventListener('pointerup', () => {
+    if (!drag) return;
+    const moved = drag.moved;
+    drag = null;
+    revTrack.classList.remove('is-dragging');
+    if (moved) goToReview(currentReview());
+  });
+
+  // Gentle auto-advance while the section is visible and nobody is interacting
+  let revVisible = false;
+  let revHold = false;
+  new IntersectionObserver(([entry]) => { revVisible = entry.isIntersecting; }, { threshold: 0.4 }).observe(revTrack);
+  const reviewsBox = $('.reviews');
+  ['pointerenter', 'focusin'].forEach((ev) => reviewsBox.addEventListener(ev, () => { revHold = true; }));
+  ['pointerleave', 'focusout'].forEach((ev) => reviewsBox.addEventListener(ev, () => { revHold = false; }));
+  if (!reduceMotion.matches) {
+    setInterval(() => {
+      if (!revVisible || revHold || drag || document.hidden) return;
+      const atEnd = revTrack.scrollLeft >= maxScroll() - 4;
+      goToReview(atEnd ? 0 : currentReview() + 1);
+    }, 6000);
+  }
+
   /* ---------- Truck detail modal + gallery ---------- */
   const modal = $('#truck-modal');
   const mImg = $('#tm-image');
@@ -201,7 +337,7 @@
     idx = (i + photos.length) % photos.length;
     const swap = () => {
       mImg.src = IMG + photos[idx];
-      mImg.alt = `${TRUCKS[current].title} — photo ${idx + 1} of ${photos.length}`;
+      mImg.alt = `${TRUCKS[current].title}, photo ${idx + 1} of ${photos.length}`;
       mImg.classList.remove('is-swapping');
     };
     if (reduceMotion.matches || !mImg.getAttribute('src')) swap();
@@ -236,12 +372,10 @@
     document.body.classList.add('modal-open');
   };
 
-  const closeModal = () => {
-    if (modal.open) modal.close();
-  };
+  const closeModal = () => { if (modal.open) modal.close(); };
   modal.addEventListener('close', () => {
     document.body.classList.remove('modal-open');
-    if (lastTrigger) lastTrigger.focus({ preventScroll: true });
+    if (lastTrigger && lastTrigger.isConnected) lastTrigger.focus({ preventScroll: true });
   });
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   $('[data-close]', modal).addEventListener('click', closeModal);
@@ -251,7 +385,6 @@
     if (e.key === 'ArrowLeft') showPhoto(idx - 1);
   });
 
-  // Swipe on the gallery stage
   let touchX = null;
   const stage = $('.gallery__stage', modal);
   stage.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
@@ -262,10 +395,13 @@
     touchX = null;
   });
 
-  $$('[data-open-truck]').forEach((el) => el.addEventListener('click', (e) => {
+  // Delegated so the cloned tiles in the scrolling strip work too
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('[data-open-truck]');
+    if (!el) return;
     e.preventDefault();
     openTruck(el.dataset.openTruck, el);
-  }));
+  });
 
   /* ---------- Inquiry routing: buttons prefill the demo form ---------- */
   const form = $('#inquiry-form');
@@ -273,11 +409,13 @@
   const fInterest = $('#f-interest');
   const fMsg = $('#f-msg');
   const fName = $('#f-name');
+  const success = $('#form-success');
+  const showForm = () => { success.hidden = true; form.hidden = false; };
 
   const flash = (el) => {
     const field = el.closest('.field');
     field.classList.remove('is-flash');
-    void field.offsetWidth; // restart animation
+    void field.offsetWidth;
     field.classList.add('is-flash');
   };
 
@@ -299,6 +437,7 @@
   $$('[data-inquire]').forEach((b) => b.addEventListener('click', () => goToContact({ truck: b.dataset.inquire, interest: 'Purchase' })));
   $('#tm-inquire').addEventListener('click', () => {
     const id = current;
+    lastTrigger = null;
     closeModal();
     goToContact({ truck: id, interest: 'Purchase' });
   });
@@ -309,9 +448,6 @@
   }));
 
   /* ---------- Demo form ---------- */
-  const success = $('#form-success');
-  const showForm = () => { success.hidden = true; form.hidden = false; };
-
   const validate = () => {
     let ok = true;
     $$('.field__error', form).forEach((n) => n.remove());
